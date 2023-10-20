@@ -15,22 +15,34 @@ const sendEmail = async (email, res) => {
     
     from: process.env.SMPT_MAIL,
     to: email,
-    subject: "SIH",
-    text: `Hello Nikita Sharma,
-
-    We are pleased to confirm your registration for the upcoming SIH Event, scheduled to be held on [Event Date] at [Event Venue]. Thank you for your interest in our event and for registering as a participant.
-    
-    The XYZ Event promises to be an exciting and informative experience, with a range of guest speakers and industry experts scheduled to attend. We believe that you will find the event to be both insightful and engaging, and we look forward to your active participation.
-    
-    As a registered candidate, you will receive regular updates about the event and its schedule. We will also be sending you additional information in the coming days, including details on how to access the event platform and participate in the sessions.
-    
-    If you have any questions or concerns regarding your registration, please do not hesitate to contact us at [Contact Email or Phone Number]. We will be happy to assist you in any way we can.
-    
-    Thank you again for your interest in our event. We look forward to seeing you at the XYZ Event!
-    
-    Best regards,
-    pirates
+    subject: "freeShare",
+    text: `Hello,WELLCOME
     `,
+    html:`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome Email</title>
+    </head>
+    <body>
+        <table align="center" width="600" cellspacing="0" cellpadding="0">
+            <tr>
+                <td style="background-color: #f4f4f4; text-align: center; padding: 30px 0;">
+                    <img src="https://i.pinimg.com/originals/b9/ab/f0/b9abf0a0feb3219f56a51448d8ffae2c.gif" alt="Welcome GIF" width="200" height="200" style="display: block; margin: 0 auto;">
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; padding: 20px 0;">
+                    <h1>Welcome to Our Community!</h1>
+                    <p>Thank you for joining us. We're excited to have you as part of our community.</p>
+                    <p><a href="https://example.com" style="text-decoration: none; color: #007BFF;">Visit our website</a></p>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+    `
   };
 
   await transporter.sendMail(mailOptions,(error)=>{

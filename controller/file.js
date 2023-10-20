@@ -2,6 +2,7 @@ const file = require('../model/file');
 const multer = require('multer');
 const { v4: uuid4 } = require('uuid');
 const path = require('path');
+const share =require('../utils/sendMailShare')
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, 'uploads/'),
@@ -85,6 +86,45 @@ const downloadFolder = async(req,res)=>{
     res.download(filePath);
   }
 
+  const sendFile = async (req,res)=>{
+    const { uuid, emailTo, emailFrom, expiresIn } = req.body;
+    if(!uuid || !emailTo || !emailFrom) {
+        return res.status(422).send({ error: 'All fields are required except expiry.'});
+    }
+    // Get data from db 
+    try {
+      const fileObt = await file.findOne({ uuid: uuid });
+      // if(fileObt.sender) {
+      //   return res.status(422).send({ error: 'Email already sent once.'});
+      // }
+      fileObt.sender = emailFrom;
+      fileObt.receiver = emailTo;
+      const response = await fileObt.save();
+      // send mail
+      share({
+        from: emailFrom,
+        to: emailTo,
+        subject: 'Freeshare file sharing',
+        text: `${emailFrom} shared a file with you.`,
+        html: require('../utils/emailTemplate')({
+                  emailFrom, 
+                  downloadLink: `${process.env.APP_BASE_URL}/files/${fileObt.uuid}?source=email` ,
+                  size: parseInt(fileObt.size/1000) + ' KB',
+                  expires: '24 hours'
+              })
+      }).then(() => {
+
+        return res.json({success: true});
+      }).catch(err => {
+        return res.status(500).json({error: 'Error in email sending.'});
+      });
+  } catch(err) {
+    console.log(err);
+    return res.status(500).send({ error: 'Something went wrong.'});
+  }
+  
+  };
 module.exports = { uploadFile,
 download ,
-downloadFolder};
+downloadFolder,
+sendFile};

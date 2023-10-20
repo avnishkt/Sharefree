@@ -1,103 +1,379 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN FORM</title>
+    <title>Download | InShare - File Sharing Made Easy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <style>
-        /* Styles for the form */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            background: linear-gradient(78deg, #b77fd2, #7cc2c5, #868abd, #9cb98b);
-            background-size: 800% 800%;
+         @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
 
-            -webkit-animation: AnimationName 34s ease infinite;
-            -moz-animation: AnimationName 34s ease infinite;
-            -o-animation: AnimationName 34s ease infinite;
-            animation: AnimationName 34s ease infinite;
-        }
+body {
+    margin: 0;
+    height: 100%;
+    overflow-y: auto;
+    background-image: linear-gradient(120deg, #edf5fe, #e8effc);
+    /*background-image: linear-gradient(to bottom, #8b8ff7, #17d7fa);*/
+    /*background-size: cover;*/
+    font-family: system-ui;
+}
 
-        @-webkit-keyframes AnimationName {
-            0%{background-position:0% 91%}
-            50%{background-position:100% 10%}
-            100%{background-position:0% 91%}
-        }
-        @-moz-keyframes AnimationName {
-            0%{background-position:0% 91%}
-            50%{background-position:100% 10%}
-            100%{background-position:0% 91%}
-        }
-        @-o-keyframes AnimationName {
-            0%{background-position:0% 91%}
-            50%{background-position:100% 10%}
-            100%{background-position:0% 91%}
-        }
-        @keyframes AnimationName {
-            0%{background-position:0% 91%}
-            50%{background-position:100% 10%}
-            100%{background-position:0% 91%}
-        }
+body .svg-top {
+    position: absolute;
+    top: -900px;
+    right: -300px;
+}
 
-        h2 {
-            text-align: center;
-            margin-top: 50px;
-            color: #444;
-        }
-        form {
-            width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #888;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        input[type="submit"]:hover {
-            background-color: #0062cc;
-        }
+body .svg-bottom {
+    position: absolute;
+    bottom: -500px;
+    left: -200px;
+}
 
-        /* Styles for the error message */
-        .error-message {
-            color: red;
-            margin-top: 10px;
-            text-align: center;
-            font-weight: bold;
-        }
-    </style>
+.inshare-logo {
+    position: relative;
+    top: -20px;
+    left: -20px;
+    width: 150px;
+    height: auto;
+}
+
+.container {
+    margin: 3.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.container .wrapper {
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 20px;
+    width: 350px;
+    z-index: 1;
+}
+
+.container .wrapper header {
+    margin-bottom: 40px;
+}
+
+.container .wrapper header .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    background-color: #03a9f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .wrapper header .logo span {
+    font-size: 18px;
+    color: #fff;
+}
+
+.container .wrapper header h1 {
+    color: #6dd1fc;
+    font-size: 35px;
+    font-weight: 500;
+    margin-bottom: 0;
+    margin-top: 60px;
+    text-align: center;
+}
+
+.container .wrapper header p {
+    color: #03a9f4;
+    font-size: 18px;
+    font-weight: 300;
+    margin: 5px 0 0 0;
+}
+
+.container .wrapper .main-content input {
+    border: none;
+    background: #f7fcff;
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 5px;
+    margin: 15px 0;
+    font-size: 18px;
+    color: #636363;
+    border-radius: 3px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+
+.container .wrapper .main-content input::placeholder {
+    color: #bad1db;
+    padding-left: 0.5rem;
+    /*font-size: 18px;*/
+    /*font-weight: 300;*/
+}
+
+.auth{
+    /*text-align: center;*/
+    color: #7d7d7d;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    align-items: center;
+}
+
+.auth a {
+    color: #696969;
+    background: #fff;
+    padding: 0.3rem 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    /*margin: 2rem auto auto 1rem;*/
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.container .wrapper .main-content input:focus {
+    border-bottom: 1px #03a9f4 solid;
+    outline: none;
+}
+
+.container .wrapper .main-content .line {
+    width: 100%;
+    height: 2px;
+    background-color: #636363 55;
+}
+
+.container .wrapper .main-content button,
+.modal-form button {
+    background: linear-gradient(to right, #6065d9, #17d7fa);
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+    display: block;
+    width: 150px;
+    height: 40px;
+    margin: 0 auto 2rem auto;
+    outline: none;
+    cursor: pointer;
+}
+
+.error {
+position: relative;
+  color: black;
+  margin: auto;
+  background: #ff5757;
+  padding: 0.4rem;
+  width: 300px;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 1rem;
+  color: #fff;
+  border: 1px solid #e62727;
+}
+
+.success {
+position: relative;
+  /*opacity: 0.8;*/
+  margin: auto;
+  background: #46eb6f;
+  padding: 0.4rem;
+  width: 300px;
+  text-align: center;
+  border-radius: 15px;
+  margin-top: 1rem;
+  color: #fff;
+}
+
+.cross {
+    position: absolute;
+    top: -3px;
+    right: 6px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.container .wrapper .main-content button:hover {
+  opacity: 0.9;
+}
+
+.container .wrapper .main-content button:active {
+    transform: scale(0.9);
+    transition: ease-out 0.1s;
+}
+
+label {
+    color: #4f4f4f;
+    font-size: 1.4rem;
+}
+
+.container .wrapper footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 60px;
+}
+
+.container .wrapper footer p {
+    margin: 0;
+    font-weight: 100;
+}
+
+.container .wrapper footer p a {
+    color: #028bca;
+    text-decoration: none;
+}
+
+.container .wrapper footer p a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .container {
+        margin-top: 5rem;
+    }
+    .wrapper {
+        margin: 0 10px !important;
+        padding: 30px;
+    }
+
+    .wrapper header h1 {
+        font-size: 30px;
+    }
+}
+
+
+/* FOR FORGOT PASS */
+.forgot-head {
+    font-size: 1.1rem;
+    color: #404040;
+}
+
+
+/* MODAL */
+.modal {
+    display: none;
+    position:  fixed;
+    z-index: 2;
+    padding: 300px 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-content {
+    background: #fff;
+    margin: auto;
+    max-width: 300px;
+    border-radius: 10px;
+    padding: 30px;
+    /*height: 300px;*/
+}
+.modal-content input {
+    border: none;
+    background: #f7fcff;
+    display: block;
+    width: 100%;
+    height: 40px;
+    padding: 0 5px;
+    margin: 15px 0;
+    font-size: 18px;
+    color: #636363;
+    border-radius: 3px;
+    box-shadow: rgba(27, 31, 35, 0.04) 0px 1px 0px, rgba(255, 255, 255, 0.25) 0px 1px 0px inset;
+}
+.modal-form button {
+    margin-bottom: 0;
+}
+.short-message {
+    color: #73eaff;
+}
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+      </style>
+    <script>const button = document.querySelector('.forgotpass-button');
+        const modal = document.querySelector('.modal');
+        const closeBtn = document.querySelector('.close');
+        
+        const cross = document.querySelector('.cross');
+        const msgToast = document.querySelector('.msg');
+        
+        button.addEventListener('click', () => {
+            modal.style.display = 'block';
+        })
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        })
+        
+        // Remove the Toast Message when cross button is clicked
+        cross.addEventListener('click', () => {
+            msgToast.style.display = 'none';
+        })
+        </script>
 </head>
+
 <body>
-    <h2>Login Form</h2>
-    <form action="login" method="post">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" placeholder="Enter your email">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" placeholder="Enter your password">
-        <input type="submit" value="Login">
-    </form>
+  <div class="modal">
+      <div class="modal-content ">
+        <span class="close">&times;</span>
+        <form action="/forgot" class="modal-form" method="POST">
+          <label for="email">Enter your email</label><br>
+          <input type="text" name="email" placeholder="email">
+          <p class="short-message">A reset link will be sent to this email</p>
+          <button class="forgot-button" type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+ <div class="svg-top">
+  
+</div>
+<div class="svg-bottom">
+ 
+</div>
+
+<section class="container">
+  <section class="wrapper">
+    <header>
+      <img src="../img/logo.png" alt="Inshare logo" class="inshare-logo">
+      <h1>Login</h1>
+    </header>
+    <section class="main-con">
+      <form action="/login" method="POST">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" name="email" placeholder="Email">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" name="password" placeholder="Password">
+        <button>Login</button>
+        <div class="auth">
+          OR
+          <!-- <a href="/auth/google"><i class="fab fa-google "></i></a> -->
+        </div>
+      </form>
+   
+    </section>
+    <footer>
+      <!-- <p><a href="#" class="forgotpass-button">Forgot Password</a></p> -->
+      <p>Need Account? <a href="/sig" title="Register">Register</a></p>
+
+    </footer>
+  </section>
+</section>
+
 </body>
+
 </html>

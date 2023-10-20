@@ -5,7 +5,29 @@ const port = 8001;
 const ejs= require('ejs');
 const path =require('path');
 const cookieParser = require('cookie-parser');
-app.use(express.static('public'))
+app.use(express.json());
+
+app.use(express.static(__dirname + '/public'))
+const cors = require('cors');
+const corsOptions = {
+//   // origin: process.env.ALLOWED_CLIENTS.split(',')
+//   // ['http://localhost:3000', 'http://localhost:5000', 'http://localhost:3300']
+
+
+// // Default configuration looks like
+
+    "origin": "*",
+    "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
+  }
+  // app.use((req, res, next) => {
+  //   res.header('Access-Control-Allow-Origin', 'http://localhost:8001'); // Change this to the appropriate origin
+  //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  //   next();
+  // });
+
+app.use(cors(corsOptions))
 
 
 app.use(cookieParser());
@@ -25,7 +47,6 @@ app.use('/api/',router2);
 app.use('/files',router3);
 app.use('/files/download',router4)
 
-app.use(express.json());
 app.use(
     session({
       secret: 'your-secret-key', // Change this to a secure random string
@@ -36,9 +57,11 @@ app.use(
 
 app.get('/',async(req,res)=>{
     
-    await res.send(`commplete the project with learning no need to go fast jusdt learn the things ${username}`)
+    await res.render('upload')
 
 })
+
+
 
 
 app.get("/login", (req, res) => {
