@@ -44,7 +44,7 @@ const uploadFile = async (req, res) => {
     });
 
     return res.json({
-      file: `${process.env.APP_base_URL}/files/${response.uuid}`
+      file: `https://freeshare-wtba.onrender.com/files/${response.uuid}`
     });
   } catch (error) {
     return res.status(500).send({ error: error.message });
@@ -64,7 +64,7 @@ const download =async (req,res ,)=>{
         uuid:fle.uuid,
         fileName: fle.filename,
         fileSize: fle.size,
-        downloadLink:`${process.env.APP_base_URL}/files/download/${fle.uuid}`
+        downloadLink:`https://freeshare-wtba.onrender.com/files/download/${fle.uuid}`
 
     })
 }catch(err){
@@ -108,7 +108,7 @@ const downloadFolder = async(req,res)=>{
         text: `${emailFrom} shared a file with you.`,
         html: require('../utils/emailTemplate')({
                   emailFrom, 
-                  downloadLink: `${process.env.APP_BASE_URL}/files/${fileObt.uuid}?source=email` ,
+                  downloadLink: `https://freeshare-wtba.onrender.com/files/${fileObt.uuid}?source=email` ,
                   size: parseInt(fileObt.size/1000) + ' KB',
                   expires: '24 hours'
               })

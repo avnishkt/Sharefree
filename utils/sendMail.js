@@ -36,7 +36,7 @@ const sendEmail = async (email, res) => {
                 <td style="text-align: center; padding: 20px 0;">
                     <h1>Welcome to Our Community!</h1>
                     <p>Thank you for joining us. We're excited to have you as part of our community.</p>
-                    <p><a href="https://example.com" style="text-decoration: none; color: #007BFF;">Visit our website</a></p>
+                    <p><a href="https://freeshare-wtba.onrender.com" style="text-decoration: none; color: #007BFF;">Visit our website</a></p>
                 </td>
             </tr>
         </table>
