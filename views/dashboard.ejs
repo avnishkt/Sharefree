@@ -1,0 +1,434 @@
+<!-- <h1>Hey user.username  Welcome to inshare dashboard!</h1>
+<div><b>Id:</b> user.id%></div>
+<div><b>Username:</b> user.username%></div>
+<div><b>Email:</b> user.email%></div>
+<div><b>Password:</b> user.password%></div>
+<div><b>Files:</b> user.files_created%></div>
+<p><a href="/users/logout">Logout</a></p> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Dashboard</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>:root {
+        --main-bg-color: #edf5fe;
+        --light-blue: #03a9f4;
+        --dark-blue: #028bca;
+     }
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: system-ui;
+        background: var(--main-bg-color);
+        color: #6b6b6b;
+    }
+    
+    .navbar	{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 5px 6rem 1.3rem 6rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    }
+    
+    .logo {
+        width: 150px;
+        height: auto;  
+    }
+    
+    .details {
+        margin-top: -35px;
+    }
+    .username {
+        font-size: 1.8rem;
+    }
+    
+    .button {
+        background: #ff756b;
+        padding: 0.6rem;
+        font-size: 1.3rem;
+        border-radius: 4px;
+        text-decoration: none;
+        color: #fff;
+    }
+    .button:hover {
+      opacity: 0.8;
+    }
+    
+    /* Main */
+    main {
+        max-width: 1200px;
+        margin: 5rem auto;
+        background: #fff;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    }
+    .user-info {
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .far {
+        position: relative;
+        background: #e8e8e8;
+        top: -70px;
+        padding: 2rem;
+        border-radius: 50%;
+        /*margin-bottom: 1rem; */
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    
+    .pfp {
+        padding: 0;
+        background-size: cover;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        /*width: 12%;
+        height: 12%;*/
+    }
+    
+    
+    
+    .main-table {
+        overflow-x: auto;
+        margin-top: 3rem;
+        border-radius: 6px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        /*background: #f2fafa;*/
+        /*box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;*/
+    }
+    
+    .whatsapp {
+        margin-left: 0.2rem;
+    }
+    
+    #all-devices {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    #all-devices td, #all-devices th {
+      padding: 9px;
+    }
+    
+    tr td {
+        min-width: 80px;
+    }
+    
+    #all-devices td a {
+        /*color: var(--primary-font);	*/
+    }
+    /*#all-devices tr:nth-child(even){background-color: #f2fafa;}*/
+    
+    #all-devices tr:hover {background-color: #e8eced;}
+    
+    #all-devices th {
+      padding-top: 12px;
+      padding-bottom: 12px;
+      text-align: left;
+      background-color: #8cc0fa;
+      color: white;
+    }
+    
+    /* Empty */
+    .no-file {
+        margin: 5rem;
+        text-align: center;
+    }
+    .empty {
+        max-width: 500px;
+        text-align: center;
+    }
+    .empty-msg {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        color: #adadad;
+    }
+    .download-btn {
+        color: #fff;
+        text-decoration: none;
+        background: #8adaff;
+        padding: 0.3rem;
+        border-radius: 3px;
+    }
+    
+    .filename-td {
+        max-width: 200px;
+        overflow: hidden; 
+    }
+    
+    .empty {
+        width: 100%;
+        height: auto;
+    }
+    
+    .toggle {
+        display: none;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+    
+    .block {
+        display: none;
+    }
+    
+    .delete {
+        background: #ff756b;
+    }
+    .delete:hover {
+        cursor: pointer;
+    }
+    
+    
+    @media (max-width: 520px) {
+        main {
+            padding: 5px;
+            /*margin: 0;*/
+        }
+    
+        .toggle {
+            display: block;
+        }
+    
+        .info-table {
+            overflow-x: auto; 
+        }
+    
+        .navbar {
+            /*margin-top: 2rem;*/
+            /*display: none;*/
+            flex-direction: column;
+        }
+        .navbar a{
+            margin-top: 1rem;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--main-bg-color);
+            color: #333;
+            transition: background-color 0.5s ease;
+        }
+
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin: 2rem 0;
+        }
+
+        .user-info {
+            text-align: center;
+        }
+
+        .username {
+            font-size: 2rem;
+            color: var(--dark-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .email {
+            font-size: 1.2rem;
+            color: #777;
+        }
+
+        .profile-pic img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-pic:hover img {
+            transform: scale(1.1);
+        }
+
+        .files-container {
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--dark-blue);
+            color: #fff;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            margin-right: 8px;
+            text-decoration: none;
+            background-color: var(--dark-blue);
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: #028bca;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            background-color: #25d366;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            background-color: #128c7e;
+        }
+
+        .delete-btn {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            background-color: #ff5252;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-btn:hover {
+            background-color: #d50000;
+        }
+    }
+
+    </style>
+    
+	<script >const navBar =  document.querySelector('.navbar');
+        const toggler = document.querySelector('.toggle');
+        
+        const deleteBtn = document.querySelectorAll('.delete');
+        
+        toggler.addEventListener('click', () => {
+            navBar.classList.toggle('block');
+        })
+        
+        
+        //  Delete feature
+        deleteBtn.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // console.log(e.target.getAttribute('data-id'));
+                // console.log('Delete Button pressed!');
+                const result = confirm('Do you really want to delte this?');
+                if (result) {
+                    fetch(`${window.location.origin}/delete/file/${e.target.getAttribute('data-id')}`, {
+                        method: 'DELETE'
+                    }).then(res => window.location.reload()).catch(err => {
+                        console.log(err.message);
+                    })
+                }
+            })
+        })</script>
+</head>
+<body>
+	<div class="toggle">
+		<i class="fas fa-bars fa-2x toggle"></i>
+	</div>
+	<nav class="navbar">
+		<a href="/" ><img class="logo" src="../img/logo.png" alt=""></a>
+		<a href="/users/logout" class="button">Logout</a>
+	</nav>
+
+	<main>
+		<!-- dashboard.ejs -->
+
+<div class="profile-pic">
+    <% if (user && user.profilePic !== undefined) { %>
+        <img src="<%= user.profilePic %>" class="far pfp" alt="">
+    <% } else { %>
+        <i class="far fa-user fa-3x"></i>
+    <% } %>
+</div>
+<div class="details">
+    <% if (user && user.username !== undefined) { %>
+        <div class="username"><%= user.username %></div>
+    <% } %>
+    <% if (user && user.email !== undefined) { %>
+        <div class="email"><%= user.email %></div><br><br>
+        <% if (user.profilePic !== undefined) { %>
+            <%= user.profilePic %>
+        <% } %>
+    <% } else { %>
+        <div class="email"><%= user.email %></div><br><br>
+    <% } %>
+</div>
+
+		<% if (user && user.files_created.length > 0) { %>
+			<div class="info-table">
+				<div class="main-table">
+	                <table id="all-devices" >
+	                    <thead>
+	                        <tr>
+	                            <th>Name</th>
+	                            <!-- <th>Extension</th> -->
+	                            <th>Created on</th>
+	                            <th>Share</th>
+	                            <th>Action</th>
+	                            <!-- <th>test</th> -->
+	                        </tr>
+	                    </thead>
+	                    <!-- Fill the table Dynamically -->
+	                    <tbody class="tableData">
+						  	<% user.files_created.forEach(file => { %>
+						  		<tr>
+								    <td class="filename-td"><%= file.filename %></td>
+								    <td><%= file.date %></td>
+								    <td class="share-btns">
+								    	<a class="download-btn" href="http://localhost:3000/files/<%= file.uuid %>">
+								    		<i class="fas fa-external-link-alt"></i>
+								    	</a>
+										<a class="download-btn whatsapp" href="whatsapp://send?text=http://localhost:3000/files/<%= file.uuid %>">
+								    		<i class="fab fa-whatsapp"></i>
+								    	</a>
+								    </td>
+								    <td><a class="download-btn delete" data-id=<%= file.uuid %>>Delete</a> </td>
+						  		</tr>
+						  	<% }) %>
+	                    </tbody>
+	                </table>
+	            </div>
+			</div>
+		<% } else { %>
+			<div class="no-file">
+				<img class="empty" src="../assets/empty.svg" alt="">
+				<p class="empty-msg">It's quite empty here</p>
+			</div>
+		<% } %>
+	</main>
+</body>
+</html>

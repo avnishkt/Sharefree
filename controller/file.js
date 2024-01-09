@@ -1,4 +1,6 @@
 const file = require('../model/file');
+const person  = require('../model/person');
+
 const multer = require('multer');
 const { v4: uuid4 } = require('uuid');
 const path = require('path');
@@ -14,40 +16,53 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage,
-  limits: { fileSize: 1000000 * 100 } // Correct 'limit' to 'limits'
+  limits: { fileSize: 1000000 * 100 } 
 }).single('myfile');
-
 const uploadFile = async (req, res) => {
   try {
-    await new Promise((resolve, reject) => {
-      upload(req, res, (err) => {
-        if (!req.file) {
-          reject({ error: "All fields required." });
-        } else if (err) {
-          reject({ error: err.message });
-        } else {
-          resolve({
-            filename: req.file.filename,
-            uuid: uuid4(),
-            path: req.file.path,
-            size: req.file.size
+      await new Promise((resolve, reject) => {
+          upload(req, res, async (err) => {
+              if (!req.file) {
+                  reject({ error: "All fields required." });
+              } else if (err) {
+                  reject({ error: err.message });
+              } else {
+                  const uploadedFile = await file.create({
+                      filename: req.file.filename,
+                      uuid: uuid4(),
+                      path: req.file.path,
+                      size: req.file.size,
+                      createdby: req.user // Assuming req.user contains the user ID
+                  });
+
+                  // Automatically update the user's reference to the newly uploaded file
+                  const user = await person.findById(req.user);
+                   console.log(req.user);
+                  if (user) {
+                      if (!user.files_created) {
+                          user.files_created = [];
+                          console.log(1);
+                      }
+                      user.files_created.push(uploadedFile._id);
+                      console.log(2);
+                      await user.save();
+                  }
+
+                  resolve({
+                      filename: req.file.filename,
+                      uuid: uploadedFile.uuid,
+                      path: req.file.path,
+                      size: req.file.size
+                  });
+              }
           });
-        }
       });
-    });
 
-    const response = await file.create({
-      filename: req.file.filename,
-      uuid: uuid4(),
-      path: req.file.path,
-      size: req.file.size
-    });
-
-    return res.json({
-      file: `https://freeshare-wtba.onrender.com/files/${response.uuid}`
-    });
+      res.json({
+          file: `https://freeshare-wtba.onrender.com/files/${response.uuid}`
+      });
   } catch (error) {
-    return res.status(500).send({ error: error.message });
+      return res.status(500).send({ error: error.message });
   }
 };
 

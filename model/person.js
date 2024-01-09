@@ -4,13 +4,13 @@ const mongoose= require('mongoose');
 const personSchema= new mongoose.Schema({
     username: {
         type: String,
-        required: true,
+        // required: true,
         minlength: 3,
     },
     email: {
         type: String,
-        required: true,
-        unique: true,
+        // required: true,
+        // unique: true,
         validate: {
             validator: function(value) {
                 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -22,8 +22,35 @@ const personSchema= new mongoose.Schema({
     },
     password:{
         type:String,
-        required:true
+        // required:true
     }
+    ,
+    googleId:{
+        type:String,
+
+
+    }
+    ,  files_created: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'File', // Assuming 'File' is the name of the 'file' model
+    }],
+	date: {
+		type: Date,
+		default: Date.now
+	},
+	isVerified: {
+		type: Boolean,
+		default: false
+	},
+	gmail: {
+		type: String,
+	},
+	googleId: {
+		type: String,
+	},
+	profilePic: {
+		type:String
+	}
 
 
 })
