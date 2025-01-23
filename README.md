@@ -1,3 +1,6 @@
+
+
+
 # ShareFree
 
 ShareFree is a file-sharing application designed to simplify the process of sharing files securely and efficiently. It supports various file formats, integrates email-based sharing, and includes automated file cleanup to optimize storage usage.
@@ -110,4 +113,9 @@ For any inquiries or issues, please contact:
 
 **Avnish Tiwari**  
 [GitHub](https://github.com/avnishkt)  
+https://github.com/user-attachments/assets/f2c29560-6374-48d4-89de-089b6271b44f
 
+![Screenshot 2025-01-24 005405](https://github.com/user-attachments/assets/cd62b960-1452-4cf7-8078-a41e1031d532)
+![Screenshot 2025-01-24 005336](https://github.com/user-attachments/assets/23ec9d65-bca8-404c-893f-7137b21f3de7)
+![Screenshot 2025-01-24 005314](https://github.com/user-attachments/assets/f02c6d83-a018-4229-9329-7b42f796faf6)
+![Screenshot 2025-01-24 005301](https://github.com/user-attachments/assets/450b8d14-71c1-4073-8198-cd873d9b03ef)
